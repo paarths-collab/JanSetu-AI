@@ -1,0 +1,129 @@
+[
+  {
+    "id": "pm-kisan",
+    "name": "PM-KISAN Samman Nidhi",
+    "state": "all_india",
+    "category": "agriculture",
+    "eligibility_rules": {
+      "occupation": ["farmer"],
+      "landholding": "small_or_marginal_farmer_family",
+      "exclusions": ["institutional_landholder", "income_tax_payer", "serving_or_retired_government_employee"]
+    },
+    "required_documents": ["Aadhaar number", "Bank account details", "Land records", "Mobile number"],
+    "benefits": "Income support of Rs 6,000 per year in three equal instalments for eligible farmer families.",
+    "application_steps": ["Check eligibility with local agriculture office or online portal", "Complete Aadhaar and bank seeding", "Submit land ownership or cultivation details", "Track beneficiary status online"],
+    "keywords": ["farmer", "kisan", "income support", "agriculture", "land", "crop"],
+    "official_url": "https://pmkisan.gov.in/"
+  },
+  {
+    "id": "pmjay-ayushman-bharat",
+    "name": "Ayushman Bharat Pradhan Mantri Jan Arogya Yojana",
+    "state": "all_india",
+    "category": "health",
+    "eligibility_rules": {
+      "household": "identified_under_secc_or_state_health_scheme",
+      "income": ["low_income", "vulnerable_household"],
+      "coverage": "family_floater"
+    },
+    "required_documents": ["Aadhaar card or approved identity proof", "Ration card or family identity document", "Mobile number", "PM-JAY card if already issued"],
+    "benefits": "Cashless secondary and tertiary hospital care cover for eligible families at empanelled hospitals.",
+    "application_steps": ["Check family eligibility", "Complete eKYC", "Generate or update Ayushman card", "Visit an empanelled hospital for cashless treatment"],
+    "keywords": ["health", "hospital", "ayushman", "pmjay", "insurance", "treatment"],
+    "official_url": "https://pmjay.gov.in/"
+  },
+  {
+    "id": "pmay-urban",
+    "name": "Pradhan Mantri Awas Yojana - Urban",
+    "state": "all_india",
+    "category": "housing",
+    "eligibility_rules": {
+      "household": "no_pucca_house_in_any_family_member_name",
+      "income_groups": ["ews", "lig", "mig"],
+      "location": "urban"
+    },
+    "required_documents": ["Aadhaar card", "Income certificate or self-declaration", "Bank account details", "Proof of existing residence", "Property or land documents if applicable"],
+    "benefits": "Housing assistance or credit-linked subsidy for eligible urban households.",
+    "application_steps": ["Confirm income group and city eligibility", "Apply through urban local body or portal", "Submit identity, income, bank and property documents", "Track application through the PMAY system"],
+    "keywords": ["housing", "house", "home loan", "awas", "urban", "rent"],
+    "official_url": "https://pmaymis.gov.in/"
+  },
+  {
+    "id": "pmfby",
+    "name": "Pradhan Mantri Fasal Bima Yojana",
+    "state": "all_india",
+    "category": "agriculture",
+    "eligibility_rules": {
+      "occupation": ["farmer"],
+      "crop": "notified_crop_in_notified_area",
+      "enrollment": "before_season_cutoff"
+    },
+    "required_documents": ["Land record or tenancy proof", "Sowing certificate if required", "Bank account details", "Aadhaar card", "Crop details"],
+    "benefits": "Crop insurance protection against notified risks, weather events and yield losses.",
+    "application_steps": ["Check notified crops and cutoff dates", "Enroll through bank, CSC or online portal", "Pay farmer premium share", "Report crop loss within required timelines"],
+    "keywords": ["crop insurance", "fasal bima", "farmer", "weather", "loss", "claim"],
+    "official_url": "https://pmfby.gov.in/"
+  },
+  {
+    "id": "pm-ujjwala",
+    "name": "Pradhan Mantri Ujjwala Yojana",
+    "state": "all_india",
+    "category": "energy",
+    "eligibility_rules": {
+      "applicant": "adult_woman",
+      "household": "poor_household_without_lpg_connection",
+      "documents": "kyc_required"
+    },
+    "required_documents": ["Aadhaar card", "Ration card or household composition proof", "Bank account details", "Address proof", "KYC form"],
+    "benefits": "Deposit-free LPG connection support for eligible women from poor households.",
+    "application_steps": ["Confirm no existing LPG connection in household", "Submit KYC to LPG distributor or online", "Provide Aadhaar, bank and ration details", "Receive LPG connection after verification"],
+    "keywords": ["lpg", "gas", "ujjwala", "cooking", "women", "connection"],
+    "official_url": "https://www.pmuy.gov.in/"
+  },
+  {
+    "id": "nsap-old-age-pension",
+    "name": "Indira Gandhi National Old Age Pension Scheme",
+    "state": "all_india",
+    "category": "pension",
+    "eligibility_rules": {
+      "age": "60_or_above",
+      "income": "below_poverty_line",
+      "residency": "indian_resident"
+    },
+    "required_documents": ["Age proof", "BPL or income proof", "Aadhaar card", "Bank account details", "Residence proof"],
+    "benefits": "Monthly social assistance pension for eligible older citizens, with state top-ups where applicable.",
+    "application_steps": ["Apply through local panchayat, municipality or state social welfare portal", "Submit age, income and bank documents", "Complete verification", "Track sanction and payment status"],
+    "keywords": ["pension", "old age", "senior citizen", "bpl", "social welfare", "elderly"],
+    "official_url": "https://nsap.nic.in/"
+  },
+  {
+    "id": "kisan-credit-card",
+    "name": "Kisan Credit Card",
+    "state": "all_india",
+    "category": "agriculture_credit",
+    "eligibility_rules": {
+      "occupation": ["farmer", "tenant_farmer", "sharecropper", "animal_husbandry", "fisheries"],
+      "purpose": "short_term_credit_for_agriculture_or_allied_activity"
+    },
+    "required_documents": ["Identity proof", "Address proof", "Land records or cultivation proof", "Passport-size photo", "Bank account details"],
+    "benefits": "Flexible short-term credit for crop production and allied agricultural needs.",
+    "application_steps": ["Approach bank branch, CSC or online service", "Submit KCC form with land or activity proof", "Bank verifies limit and eligibility", "Receive credit card or account limit"],
+    "keywords": ["kcc", "credit", "loan", "farmer", "crop loan", "bank"],
+    "official_url": "https://www.myscheme.gov.in/schemes/kcc"
+  },
+  {
+    "id": "national-scholarship-portal",
+    "name": "National Scholarship Portal Scholarships",
+    "state": "all_india",
+    "category": "education",
+    "eligibility_rules": {
+      "student": "enrolled_in_recognised_institution",
+      "income": "scheme_specific_income_limit",
+      "category": "scheme_specific_category_or_merit_condition"
+    },
+    "required_documents": ["Aadhaar card", "Bank account details", "Income certificate", "Caste or category certificate if applicable", "Previous marksheet", "Bonafide certificate"],
+    "benefits": "Single-window application access for central and state scholarships for eligible students.",
+    "application_steps": ["Register on the National Scholarship Portal", "Complete profile and bank validation", "Select eligible scholarship scheme", "Upload documents and submit before deadline", "Track institute and department verification"],
+    "keywords": ["scholarship", "student", "education", "fees", "income certificate", "marksheet"],
+    "official_url": "https://scholarships.gov.in/"
+  }
+]
