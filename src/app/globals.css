@@ -24,6 +24,7 @@
   --color-surface: var(--surface);
   --font-sans: var(--font-geist-sans), "Noto Sans", "Segoe UI", system-ui, -apple-system,
     Roboto, "Noto Sans Devanagari", "Noto Sans Tamil", "Noto Sans Bengali", Arial, sans-serif;
+  --font-display: var(--font-instrument-serif), Georgia, "Times New Roman", serif;
 }
 
 /* Force a clean, white, light UI regardless of OS preference. */
