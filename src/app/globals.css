@@ -2,25 +2,61 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1f2937;
+  --saffron: #ff9933;
+  --saffron-dark: #e8842a;
+  --green: #138808;
+  --navy: #000080;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --surface: #f9fafb;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-saffron: var(--saffron);
+  --color-saffron-dark: var(--saffron-dark);
+  --color-green: var(--green);
+  --color-navy: var(--navy);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-surface: var(--surface);
+  --font-sans: var(--font-geist-sans), "Noto Sans", "Segoe UI", system-ui, -apple-system,
+    Roboto, "Noto Sans Devanagari", "Noto Sans Tamil", "Noto Sans Bengali", Arial, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Force a clean, white, light UI regardless of OS preference. */
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Indian tricolor strip — use as a thin accent, never a full background. */
+.tricolor-bar {
+  background: linear-gradient(
+    90deg,
+    var(--saffron) 0 33.33%,
+    #ffffff 33.33% 66.66%,
+    var(--green) 66.66% 100%
+  );
+}
+
+.tricolor-text {
+  background: linear-gradient(90deg, var(--saffron), var(--green));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Right-to-left support (Urdu). */
+[dir="rtl"] body {
+  text-align: right;
 }
