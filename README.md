@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# JanSetu AI — Smart Bharat Civic Companion
 
-## Getting Started
+> **जनसेतु** ("people's bridge") — an AI civic companion for the *Smart Bharat* challenge
+> (Devengers × PromptWars, Google **Build with AI**).
 
-First, run the development server:
+Government portals are **information-first** and menu/search based — citizens must already know
+*what* to look for. **JanSetu AI is action-first**: a citizen picks a service and *explains their
+problem in their own language*, and the AI companion — already scoped to that service — finds the
+right answer, documents, department, complaint path, and next action, and tracks it.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## What it does (6 modules)
+
+1. **Find a Scheme** — eligibility recommender + document checklist + next steps.
+2. **Document Requirements & Decoder** — "which documents do I need?" + upload a govt PDF → plain-language explanation, deadlines, checklist.
+3. **Report a Public Issue** — photo → AI-classified complaint draft + submit.
+4. **Track a Complaint** — status timeline by complaint ID.
+5. **Ask Anything** — multilingual civic Q&A over a curated dataset + web fallback.
+6. **Transparency Dashboard** — public complaint analytics.
+
+Multilingual across **10 languages** (English, Hindi, Marathi, Gujarati, Tamil, Kannada, Telugu,
+Bengali, Punjabi, Urdu) — the chat replies in whatever language the site UI is set to, and Urdu
+renders right-to-left.
+
+## Architecture
+
+Logical microservices in a single Next.js monorepo — an API gateway (Next.js route handlers)
+fronting independently-testable domain services that share only typed contracts.
+
+```
+src/                       Next.js 15 app (App Router) — UI + API gateway
+packages/contracts/        Zod schemas + TS types (the shared seams)
+services/complaint-service/  create + track complaints, keyword classification
+services/profile-service/    citizen profiles
+services/dashboard-service/  transparency analytics
+data/schemes.json          curated real-scheme dataset (text/JSON retrieval, no vectors)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Next.js 15 · React 19 · Tailwind v4 · TypeScript · Zod · Vitest · OpenRouter (OpenAI-compatible
+LLM API, multimodal) · Recharts · unpdf (PDF text extraction).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Getting started
 
-## Learn More
+```bash
+npm install
+cp .env.example .env.local   # add OPENROUTER_API_KEY (optional — app runs without it)
+npm run dev                  # http://localhost:3000
+```
 
-To learn more about Next.js, take a look at the following resources:
+Scripts: `npm run dev` · `npm run build` · `npm test` (service unit tests) · `npm run typecheck`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## CI / CD
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **CI** (`.github/workflows/ci.yml`) — on every push/PR to `main`: typecheck → unit tests → Next.js build.
+- **CD** (`.github/workflows/deploy.yml`) — on push to `main`: deploys to Vercel. Skips gracefully
+  until these repo secrets are set: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`.
 
-## Deploy on Vercel
+Optionally add `OPENROUTER_API_KEY` as a repo secret for build parity.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Positioning
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+JanSetu AI is **not another portal** — it delivers, action-first and in the citizen's own language,
+the service *functions* today spread across India.gov.in, UMANG, DigiLocker, CPGRAMS, Swachhata,
+eDistrict, MyGov, and Bhashini. Real integrations with those systems are designed-for future work.
