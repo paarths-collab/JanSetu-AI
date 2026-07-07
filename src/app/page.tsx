@@ -2,231 +2,209 @@
 
 import Link from "next/link";
 import {
-  Zap,
-  Languages,
-  FileCheck2,
-  LineChart,
-  MessageSquareText,
-  Sparkles,
   ArrowRight,
+  CheckCircle2,
+  Mic,
+  Images,
+  Languages,
+  Sparkles,
+  MessageSquareText,
+  FileSearch,
 } from "lucide-react";
 import { useT } from "@/lib/i18n";
 import { SERVICES } from "@/lib/services";
-import { Badge, Button, Card } from "@/components/ui";
 import { cn } from "@/lib/cn";
 
-const ACCENT_TINT: Record<"saffron" | "green" | "navy", string> = {
-  saffron: "bg-saffron/10 text-saffron",
-  green: "bg-green/10 text-green",
-  navy: "bg-navy/10 text-navy",
+const ACCENT_TEXT: Record<"saffron" | "green" | "navy", string> = {
+  saffron: "text-saffron-dark",
+  green: "text-green",
+  navy: "text-navy",
 };
 
-const ACCENT_BAR: Record<"saffron" | "green" | "navy", string> = {
-  saffron: "bg-saffron",
-  green: "bg-green",
-  navy: "bg-navy",
+const ACCENT_ICON: Record<"saffron" | "green" | "navy", string> = {
+  saffron: "border-saffron/30 text-saffron-dark",
+  green: "border-green/30 text-green",
+  navy: "border-navy/30 text-navy",
 };
 
 export default function LandingPage() {
   const t = useT();
 
-  const whyPoints = [
-    {
-      icon: Zap,
-      tint: "bg-saffron/10 text-saffron",
-      title: t("why.action.title", "Action-first, not search"),
-      desc: t(
-        "why.action.desc",
-        "Go straight from your problem to the right service — no endless portals."
-      ),
-    },
-    {
-      icon: Languages,
-      tint: "bg-green/10 text-green",
-      title: t("why.language.title", "Your language"),
-      desc: t(
-        "why.language.desc",
-        "Works in 10 Indian languages, so you never get lost in translation."
-      ),
-    },
-    {
-      icon: FileCheck2,
-      tint: "bg-navy/10 text-navy",
-      title: t("why.documents.title", "Documents made clear"),
-      desc: t(
-        "why.documents.desc",
-        "Know exactly what to bring and understand any notice you receive."
-      ),
-    },
-    {
-      icon: LineChart,
-      tint: "bg-saffron/10 text-saffron",
-      title: t("why.tracking.title", "Transparent tracking"),
-      desc: t(
-        "why.tracking.desc",
-        "Follow every complaint with a clear timeline and next step."
-      ),
-    },
+  const chips = [
+    { icon: CheckCircle2, label: t("chip.free", "Free government service") },
+    { icon: Mic, label: t("chip.voice", "Voice-enabled") },
+    { icon: Images, label: t("chip.media", "Image · PDF") },
+    { icon: Languages, label: t("chip.langs", "10 languages") },
   ];
+
+  const actionLabel: Record<string, string> = {
+    schemes: t("svc.schemes.action", "Check eligibility"),
+    documents: t("svc.documents.action", "Decode a document"),
+    complaints: t("svc.complaints.action", "Report now"),
+    tracking: t("svc.tracking.action", "Enter tracking ID"),
+    ask: t("svc.ask.action", "Start a chat"),
+    dashboard: t("svc.dashboard.action", "View dashboard"),
+  };
 
   const steps = [
     {
       icon: Sparkles,
       title: t("how.step1.title", "Pick a service"),
-      desc: t(
-        "how.step1.desc",
-        "Choose what you need help with — schemes, documents, complaints and more."
-      ),
+      desc: t("how.step1.desc", "Choose what you need — schemes, documents, complaints and more."),
     },
     {
       icon: MessageSquareText,
       title: t("how.step2.title", "Explain in your language"),
-      desc: t(
-        "how.step2.desc",
-        "Describe your situation naturally. No jargon, no forms to decode."
-      ),
+      desc: t("how.step2.desc", "Describe your situation naturally. No jargon, no forms to decode."),
     },
     {
-      icon: FileCheck2,
+      icon: FileSearch,
       title: t("how.step3.title", "Get answers & tracking"),
-      desc: t(
-        "how.step3.desc",
-        "Receive clear answers, required documents and a way to track progress."
-      ),
+      desc: t("how.step3.desc", "Receive clear answers, required documents and a way to track progress."),
     },
   ];
 
   return (
     <div className="flex flex-col">
       {/* Hero */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden border-b border-border">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-1.5 tricolor-bar"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(255,153,51,0.08),transparent_70%)]"
         />
-        <div className="mx-auto max-w-6xl px-5 pb-16 pt-16 sm:pb-24 sm:pt-24">
-          <div className="mx-auto max-w-3xl text-center">
-            <Badge tone="saffron" className="mb-5">
-              <Sparkles className="h-3.5 w-3.5" />
-              {t("hero.badge", "Smart Bharat · Build with AI")}
-            </Badge>
-            <h1 className="text-balance text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl md:text-6xl">
-              {t(
-                "hero.title",
-                "From your problem to the right government service — in your language."
-              )}
-            </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-muted">
-              {t(
-                "hero.subtitle",
-                "JanSetu AI turns confusing government processes into simple, guided steps — schemes, documents, complaints and tracking, all in the language you speak."
-              )}
-            </p>
-            <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Link href="/services">
-                <Button size="lg" className="w-full sm:w-auto">
-                  {t("hero.ctaPrimary", "Get started")}
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
-              </Link>
-              <Link href="/schemes">
-                <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                  {t("hero.ctaSecondary", "Explore services")}
-                </Button>
-              </Link>
-            </div>
+        <div className="mx-auto max-w-4xl px-5 pb-16 pt-16 text-center sm:pb-24 sm:pt-24">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-white px-3 py-1 text-xs font-medium text-muted shadow-sm">
+            <span className="flex -space-x-1" aria-hidden>
+              {["bg-saffron", "bg-white border border-border", "bg-green"].map((c, i) => (
+                <span key={i} className={cn("h-2.5 w-2.5 rounded-full", c)} />
+              ))}
+            </span>
+            {t("hero.badge", "Built for every citizen · 10 languages")}
+          </div>
+
+          <h1 className="font-display text-5xl leading-[1.05] tracking-tight text-foreground sm:text-6xl md:text-7xl">
+            {t("hero.titleLine1", "Government services,")}
+            <br />
+            {t("hero.titleLine2Pre", "explained in ")}
+            <em className="tricolor-text italic">
+              {t("hero.titleAccent", "your language")}
+            </em>
+            .
+          </h1>
+
+          <p className="mx-auto mt-6 max-w-xl text-pretty text-base text-muted sm:text-lg">
+            {t(
+              "hero.subtitle",
+              "JanSetu AI is your civic companion. Describe your problem in plain words — get the right scheme, documents, and complaint path. No portals to memorize."
+            )}
+          </p>
+
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link
+              href="/services"
+              className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-foreground px-6 text-sm font-medium text-white shadow-sm transition-colors hover:bg-foreground/90 sm:w-auto"
+            >
+              {t("hero.ctaPrimary", "Start — how it works")}
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/chat?service=ask"
+              className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-border bg-white px-6 text-sm font-medium text-foreground transition-colors hover:bg-surface sm:w-auto"
+            >
+              {t("hero.ctaSecondary", "Watch 40-sec demo")}
+            </Link>
+          </div>
+
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+            {chips.map((chip) => {
+              const Icon = chip.icon;
+              return (
+                <span
+                  key={chip.label}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-muted"
+                >
+                  <Icon className="h-3.5 w-3.5 text-green" />
+                  {chip.label}
+                </span>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* What can we do */}
-      <section className="mx-auto w-full max-w-6xl px-5 py-14 sm:py-20">
-        <div className="mb-10 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            {t("landing.services.heading", "What can we do for you?")}
+      {/* Pick a service */}
+      <section id="services" className="mx-auto w-full max-w-6xl px-5 py-14 sm:py-20">
+        <div className="mb-8 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
+            {t("landing.pick.pre", "Pick a ")}
+            <span className="tricolor-text">{t("landing.pick.accent", "service")}</span>
+            {t("landing.pick.post", " to begin")}
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-muted">
-            {t(
-              "landing.services.subheading",
-              "Six ways JanSetu AI helps you get things done with the government."
-            )}
+          <p className="text-sm text-muted">
+            {t("landing.pick.hint", "Or just tap the chat button and describe your problem.")}
           </p>
         </div>
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((service) => {
             const Icon = service.icon;
             return (
               <Link key={service.id} href={service.href} className="group block">
-                <Card className="relative h-full overflow-hidden transition-all duration-200 group-hover:-translate-y-1 group-hover:shadow-md">
+                <div className="flex h-full flex-col rounded-2xl border border-border bg-white p-6 transition-all duration-200 group-hover:-translate-y-1 group-hover:border-foreground/20 group-hover:shadow-md">
                   <div
-                    aria-hidden
                     className={cn(
-                      "absolute inset-x-0 top-0 h-1",
-                      ACCENT_BAR[service.accent]
+                      "flex h-11 w-11 items-center justify-center rounded-xl border bg-white",
+                      ACCENT_ICON[service.accent]
                     )}
-                  />
-                  <div className="p-6">
-                    <div
-                      className={cn(
-                        "flex h-12 w-12 items-center justify-center rounded-xl",
-                        ACCENT_TINT[service.accent]
-                      )}
-                    >
-                      <Icon className="h-6 w-6" />
-                    </div>
-                    <h3 className="mt-4 text-lg font-semibold text-foreground">
-                      {t(service.titleKey, service.defaultTitle)}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted">
-                      {t(service.descKey, service.defaultDesc)}
-                    </p>
-                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-foreground transition-colors group-hover:text-saffron">
-                      {t("common.open", "Open")}
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                    </span>
+                  >
+                    <Icon className="h-5 w-5" />
                   </div>
-                </Card>
+                  <h3 className="mt-4 text-base font-semibold text-foreground">
+                    {t(service.titleKey, service.defaultTitle)}
+                  </h3>
+                  <p className="mt-1.5 flex-1 text-sm leading-relaxed text-muted">
+                    {t(service.descKey, service.defaultDesc)}
+                  </p>
+                  <span
+                    className={cn(
+                      "mt-4 inline-flex items-center gap-1 text-sm font-medium",
+                      ACCENT_TEXT[service.accent]
+                    )}
+                  >
+                    {actionLabel[service.id] ?? t("common.open", "Open")}
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                  </span>
+                </div>
               </Link>
             );
           })}
         </div>
       </section>
 
-      {/* Why JanSetu */}
-      <section className="border-y border-border bg-surface/50">
+      {/* How it works */}
+      <section id="how-it-works" className="border-y border-border bg-surface/50">
         <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:py-20">
-          <div className="mb-10 text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              {t("why.heading", "Why JanSetu")}
+          <div className="mb-10 max-w-2xl">
+            <h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
+              {t("how.heading", "How it works")}
             </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-muted">
-              {t(
-                "why.subheading",
-                "Built to make government services genuinely accessible for every citizen."
-              )}
+            <p className="mt-3 text-muted">
+              {t("how.subheading", "Three simple steps from question to resolution.")}
             </p>
           </div>
-
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {whyPoints.map((point) => {
-              const Icon = point.icon;
+          <div className="grid gap-6 md:grid-cols-3">
+            {steps.map((step, i) => {
+              const Icon = step.icon;
               return (
-                <div key={point.title} className="flex flex-col">
-                  <div
-                    className={cn(
-                      "flex h-11 w-11 items-center justify-center rounded-xl",
-                      point.tint
-                    )}
-                  >
-                    <Icon className="h-5 w-5" />
+                <div key={step.title} className="rounded-2xl border border-border bg-white p-6">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-saffron/10 text-sm font-bold text-saffron-dark">
+                      {i + 1}
+                    </span>
+                    <Icon className="h-5 w-5 text-muted" />
                   </div>
-                  <h3 className="mt-4 font-semibold text-foreground">
-                    {point.title}
-                  </h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-muted">
-                    {point.desc}
-                  </p>
+                  <h3 className="mt-4 text-lg font-semibold text-foreground">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">{step.desc}</p>
                 </div>
               );
             })}
@@ -234,47 +212,24 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* How it works */}
-      <section className="mx-auto w-full max-w-6xl px-5 py-14 sm:py-20">
-        <div className="mb-10 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            {t("how.heading", "How it works")}
-          </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-muted">
-            {t("how.subheading", "Three simple steps from question to resolution.")}
-          </p>
-        </div>
-
-        <div className="grid gap-6 md:grid-cols-3">
-          {steps.map((step, i) => {
-            const Icon = step.icon;
-            return (
-              <Card key={step.title} className="h-full">
-                <div className="p-6">
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-saffron/10 text-sm font-bold text-saffron">
-                      {i + 1}
-                    </span>
-                    <Icon className="h-5 w-5 text-muted" />
-                  </div>
-                  <h3 className="mt-4 text-lg font-semibold text-foreground">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">
-                    {step.desc}
-                  </p>
-                </div>
-              </Card>
-            );
-          })}
-        </div>
-
-        <div className="mt-12 text-center">
-          <Link href="/services">
-            <Button size="lg">
-              {t("how.cta", "Get started")}
-              <ArrowRight className="h-4 w-4" />
-            </Button>
+      {/* About */}
+      <section id="about" className="mx-auto w-full max-w-4xl px-5 py-14 text-center sm:py-20">
+        <h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
+          {t("about.heading", "Not another portal")}
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-pretty text-muted">
+          {t(
+            "about.body",
+            "JanSetu AI delivers, action-first and in your own language, the service functions today spread across India.gov.in, UMANG, DigiLocker, CPGRAMS, Swachhata and Bhashini — so any citizen can get things done."
+          )}
+        </p>
+        <div className="mt-8">
+          <Link
+            href="/services"
+            className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-foreground px-6 text-sm font-medium text-white shadow-sm transition-colors hover:bg-foreground/90"
+          >
+            {t("about.cta", "Get started")}
+            <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </section>

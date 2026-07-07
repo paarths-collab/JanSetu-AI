@@ -10,10 +10,9 @@ export function Nav() {
 
   const links = [
     { href: "/services", label: t("nav.services", "Services") },
-    { href: "/schemes", label: t("nav.schemes", "Schemes") },
-    { href: "/report", label: t("nav.report", "Report Issue") },
-    { href: "/track", label: t("nav.track", "Track") },
-    { href: "/dashboard", label: t("nav.dashboard", "Dashboard") },
+    { href: "/#how-it-works", label: t("nav.how", "How it works") },
+    { href: "/dashboard", label: t("nav.transparency", "Transparency") },
+    { href: "/#about", label: t("nav.about", "About") },
   ];
 
   return (
@@ -36,8 +35,7 @@ export function Nav() {
           ))}
         </div>
 
-        <label className="flex items-center gap-2 text-sm">
-          <span className="sr-only">{t("lang.label", "Language")}</span>
+        <div className="flex items-center gap-2">
           <select
             value={lang}
             onChange={(e) => setLang(e.target.value as Lang)}
@@ -50,7 +48,19 @@ export function Nav() {
               </option>
             ))}
           </select>
-        </label>
+          <Link
+            href="/services"
+            className="hidden rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:text-foreground sm:inline-flex"
+          >
+            {t("nav.signin", "Sign in")}
+          </Link>
+          <Link
+            href="/services"
+            className="inline-flex rounded-lg bg-foreground px-3.5 py-2 text-sm font-medium text-white transition-colors hover:bg-foreground/90"
+          >
+            {t("nav.signup", "Sign up")}
+          </Link>
+        </div>
       </nav>
     </header>
   );
