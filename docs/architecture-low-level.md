@@ -249,9 +249,9 @@ classDiagram
     }
 
     class ComplaintService {
-        -sequence int
+        -int sequence
         +createForUser(userId, input) Complaint
-        +trackForUser(userId, id) {complaint, updates}
+        +trackForUser(userId, id) TrackResult
         +listForUser(userId) Complaint[]
         +listAllForDashboard() Complaint[]
         +transition(id, status, note) ComplaintUpdate
